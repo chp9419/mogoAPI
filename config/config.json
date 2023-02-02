@@ -1,9 +1,0 @@
-{
-  "development": {
-    "username": "root",
-    "password": "!!Park342700!!",
-    "database": "sequelize_test",
-    "host": "localhost",
-    "dialect": "mysql"
-  }
-}
