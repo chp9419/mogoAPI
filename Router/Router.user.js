@@ -6,6 +6,6 @@ const {controller} =require('../User/user.controller');
 
 
 userRotuer.get('/:name',controller.userGetInfo);
-
+userRotuer.post('/memberSign',controller.userInfoBikeInsert);
 
 module.exports = userRotuer;

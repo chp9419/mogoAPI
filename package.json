@@ -1,9 +1,11 @@
 {
   "dependencies": {
     "express": "^4.18.2",
+    "i": "^0.3.7",
     "moran": "^0.0.11",
     "morgan": "^1.10.0",
     "mysql2": "^3.0.1",
+    "npm": "^9.4.1",
     "sequelize": "^6.28.0",
     "sequelize-cli": "^6.6.0"
   },
