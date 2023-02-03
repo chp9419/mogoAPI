@@ -60,7 +60,6 @@ const sequelizeUpdateSQL = async () => {
     T.commit();
   } catch (e) {
     T.rollback();
-    console.log("롤백중");
     console.log(e.message);
   }
 };
