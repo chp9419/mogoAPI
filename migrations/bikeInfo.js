@@ -1,46 +1,43 @@
-const Sequelize = require("sequelize");
+const Sequelize = require('sequelize')
 
-
- class BikeInfo extends Sequelize.Model {
-  static init(sequelize) {
+class BikeInfo extends Sequelize.Model {
+  static init (sequelize) {
     return super.init(
       {
         bikeName: {
           type: Sequelize.STRING(20),
           allowNull: false,
-          unique: true,
+          unique: true
         },
-        brandName:{
+        brandName: {
           type: Sequelize.STRING(20),
-          allowNull: false,
+          allowNull: false
         },
         bikeSize: {
           type: Sequelize.STRING(10),
-          allowNull: false,
+          allowNull: false
         },
         amount: {
           type: Sequelize.INTEGER,
-          allowNull: true,
-        },
+          allowNull: true
+        }
       },
       {
         sequelize,
         timestamps: false,
         underscored: false,
-        modelName: "bikeInfo",
-        tableName: "BikeInfo",
+        modelName: 'bikeInfo',
+        tableName: 'BikeInfo',
         paranoid: false,
-        charset: "utf8mb4",
-        collate: "utf8mb4_general_ci",
+        charset: 'utf8mb4',
+        collate: 'utf8mb4_general_ci'
       }
-    );
-  }
-  static associate(db) {
-    db.BikeInfo.hasMany(db.User, {foreignKey : "bike_id", sourceKey: 'id' });
+    )
   }
 
+  static associate (db) {
+    db.BikeInfo.hasMany(db.User, { foreignKey: 'bike_id', sourceKey: 'id' })
+  }
 }
 
- module.exports = BikeInfo;
-
-
+module.exports = BikeInfo
