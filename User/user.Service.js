@@ -1,4 +1,4 @@
-const db = require("../models/index");
+const db = require("../migrations/index");
 
 const userInfoRead = async (name) => {
   try {
@@ -27,7 +27,6 @@ const userBikeInfoInsert = async (_name, _phone, _age, _bikeName) => {
     const age = _age;
     const bikeName = _bikeName;
 
-    const conn = await db.sequelize;
     const T = await conn.transaction();
 
     const [result] = await db.BikeInfo.findAll({

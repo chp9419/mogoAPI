@@ -2,11 +2,12 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 
-const { sequelize } = require('./models'); // db.sequelize
+const { sequelize } = require('./migrations'); // db.sequelize
 
 const app = express();
 
-const userRotuer = require('./Router/Router.user');
+const userRoutuer = require('./Router/Router.user');
+const adminRouter = require('./Router/Router.admin');
 
 
 app.use(morgan('dev'));
@@ -14,7 +15,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/user',userRotuer);
+app.use('/user',userRoutuer);
+app.use('/sign',adminRouter);
 app.set('port', process.env.PORT || 3000);
 sequelize.sync({ force: false })
     .then(() => {

@@ -1,7 +1,9 @@
 {
   "dependencies": {
+    "crypto": "^1.0.1",
     "express": "^4.18.2",
     "i": "^0.3.7",
+    "jsonwebtoken": "^9.0.0",
     "moran": "^0.0.11",
     "morgan": "^1.10.0",
     "mysql2": "^3.0.1",
