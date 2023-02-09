@@ -1,11 +1,17 @@
 {
   "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "i": "^0.3.7",
+    "jsonwebtoken": "^9.0.0",
     "moran": "^0.0.11",
     "morgan": "^1.10.0",
     "mysql2": "^3.0.1",
     "npm": "^9.4.1",
+    "prettier": "^2.8.4",
+    "save": "^2.9.0",
     "sequelize": "^6.28.0",
     "sequelize-cli": "^6.6.0"
   },
@@ -18,5 +24,12 @@
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "eslint": "^8.33.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-promise": "^6.1.1"
+  }
 }
