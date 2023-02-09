@@ -20,9 +20,13 @@ const userInfoBikeInsert = async (req, res) => {
             age,
             bikeName
         );
-        return res.status(200).json(data);
+        if (data == true) {
+            return res.status(200).json({ result: data });
+        } else {
+            return res.status(503).json({ result: data });
+        }
     } catch (e) {
-        return res.status(500).json({ message: e });
+        return res.status(500).json({ result: e.message });
     }
 };
 

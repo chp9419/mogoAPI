@@ -1,22 +1,24 @@
 require('dotenv').config();
 
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
-const { sequelize } = require('./migrations'); // db.sequelize
 
-const app = express();
 const path = require('path');
+const auth = require('./module/jwt');
+
+const { sequelize } = require('./migrations'); // db.sequelize
+const app = express();
 
 const userRoutuer = require('./Router/Router.user');
 const adminRouter = require('./Router/Router.admin');
-
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-app.use('/user', userRoutuer);
-app.use('/sign', adminRouter);
+app.use(cookieParser());
+app.use('/product', auth.cert, userRoutuer);
+app.use('/admin', adminRouter);
 app.set('port', process.env.PORT || 3000);
 sequelize
     .sync({ force: false })

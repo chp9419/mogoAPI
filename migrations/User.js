@@ -7,7 +7,6 @@ class User extends Sequelize.Model {
                 name: {
                     type: Sequelize.STRING(20),
                     allowNull: false,
-                    unique: true,
                 },
                 age: {
                     type: Sequelize.INTEGER.UNSIGNED,

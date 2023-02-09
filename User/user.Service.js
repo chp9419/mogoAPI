@@ -1,54 +1,54 @@
-const db = require('../migrations/index')
+const db = require('../migrations/index');
 
 const userInfoRead = async (name) => {
-  try {
-    const _name = name
-    const [result] = await db.User.findAll({
-      attributes: ['name', 'age'],
-      where: { name: _name }
-    })
-    const data = result.dataValues
+    try {
+        const _name = name;
+        const [result] = await db.User.findAll({
+            attributes: ['name', 'age'],
+            where: { name: _name },
+        });
+        const data = result.dataValues;
 
-    const info = {
-      name: data.name,
-      age: data.age,
-      married: data.married
+        const info = {
+            name: data.name,
+            age: data.age,
+            married: data.married,
+        };
+        return info;
+    } catch (e) {
+        console.log(e);
     }
-    return info
-  } catch (e) {
-    console.log(e)
-  }
-}
+};
 
 const userBikeInfoInsert = async (_name, _phone, _age, _bikeName) => {
-  const conn = await db.sequelize
-  const T = await conn.transaction()
+    const conn = await db.sequelize;
+    const T = await conn.transaction();
 
-  try {
-    const name = _name
-    const phone = _phone
-    const age = _age
-    const bikeName = _bikeName
-
-    const [result] = await db.BikeInfo.findAll({
-      attributes: ['id'],
-      where: { bikeName }
-    })
-    const id = result.dataValues.id
-    await db.User.create({
-      name,
-      phone,
-      age,
-      bikeName,
-      bike_id: id // FK
-    })
-    await T.commit()
-    return true
-  } catch (e) {
-    await T.rollback()
-    console.log(e.message)
-  }
-}
+    try {
+        const name = _name;
+        const phone = _phone;
+        const age = _age;
+        const bikeName = _bikeName;
+        const [result] = await db.BikeInfo.findAll({
+            attributes: ['id'],
+            where: { bikeName: bikeName },
+        });
+        const id = result.dataValues.id;
+        await db.User.create({
+            name,
+            phone,
+            age,
+            bikeName,
+            bike_id: id, // FK
+        });
+        await T.commit();
+        return true;
+    } catch (e) {
+        await T.rollback();
+        console.log(e.message);
+        return false;
+    }
+};
 
 // const sequelizeUpdateSQL = async () => {
 //   // SQL 문법을 활용한 UPDATE
@@ -64,8 +64,8 @@ const userBikeInfoInsert = async (_name, _phone, _age, _bikeName) => {
 //   }
 // }
 module.exports = {
-  userService: {
-    userInfoRead,
-    userBikeInfoInsert
-  }
-}
+    userService: {
+        userInfoRead,
+        userBikeInfoInsert,
+    },
+};
