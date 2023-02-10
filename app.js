@@ -12,13 +12,15 @@ const app = express();
 
 const userRoutuer = require('./Router/Router.user');
 const adminRouter = require('./Router/Router.admin');
+const productRouter = require('./Router/Rotuer.product');
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/product', auth.cert, userRoutuer);
+app.use('/regist', auth.cert, userRoutuer);
 app.use('/admin', adminRouter);
+app.use('/check', productRouter);
 app.set('port', process.env.PORT || 3000);
 sequelize
     .sync({ force: false })
