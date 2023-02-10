@@ -1,7 +1,7 @@
 const express = require('express');
 const userRotuer = express.Router();
 
-const { controller } = require('../User/user.controller');
+const { controller } = require('./user.controller');
 
 userRotuer.get('/:name', controller.userGetInfo);
 userRotuer.post('/bike', controller.userInfoBikeInsert);

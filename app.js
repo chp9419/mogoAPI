@@ -10,9 +10,9 @@ const auth = require('./module/jwt');
 const { sequelize } = require('./migrations'); // db.sequelize
 const app = express();
 
-const userRoutuer = require('./Router/Router.user');
-const adminRouter = require('./Router/Router.admin');
-const productRouter = require('./Router/Rotuer.product');
+const userRoutuer = require('./User/Router.user');
+const adminRouter = require('./Admin/Router.admin');
+const productRouter = require('./Product/Rotuer.product');
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
