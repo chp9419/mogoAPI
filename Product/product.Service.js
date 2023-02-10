@@ -1,5 +1,6 @@
 const db = require('../migrations/index');
 
+// ## 회원 구매 목록 조회
 const productListCheck = async () => {
     const conn = await db.sequelize;
 
@@ -26,7 +27,7 @@ const productListCheck = async () => {
         return false;
     }
 };
-
+// 특정 회원 구매 목록 조회
 const memberPurchaseList = async (input, startDate, endDate) => {
     const conn = await db.sequelize;
     const phoneNumber = input;
