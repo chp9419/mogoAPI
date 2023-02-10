@@ -27,6 +27,32 @@ const productListCheck = async () => {
         return false;
     }
 };
+
+const productInsert = async (name, brand, size, amount, count) => {
+    const bikeName = name;
+    const bikeBrand = brand;
+    const frameSize = size;
+    const _amount = amount;
+    const _count = count;
+    const conn = await db.sequelize;
+    const T = await conn.transaction();
+
+    try {
+        await db.BikeInfo.create({
+            bikeName: bikeName,
+            brandName: bikeBrand,
+            bikeSize: frameSize,
+            count: _count,
+            amount: _amount,
+        });
+        T.commit();
+        return true;
+    } catch (e) {
+        T.rollback();
+        return false;
+    }
+};
+
 // 특정 회원 구매 목록 조회
 const memberPurchaseList = async (input, startDate, endDate) => {
     const conn = await db.sequelize;
@@ -56,5 +82,6 @@ module.exports = {
     productService: {
         productListCheck,
         memberPurchaseList,
+        productInsert,
     },
 };

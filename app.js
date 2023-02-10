@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/regist', auth.cert, userRoutuer);
 app.use('/admin', adminRouter);
-app.use('/check', productRouter);
+app.use('/product', productRouter);
 app.set('port', process.env.PORT || 3000);
 sequelize
     .sync({ force: false })

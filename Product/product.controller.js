@@ -24,9 +24,30 @@ const memberCheckList = async (req, res) => {
         return res.status(503).json({ result: false });
     }
 };
+
+const productInsert = async (req, res) => {
+    const { bikeName, brand, size, amount, count } = req.body;
+    try {
+        const data = await productService.productInsert(
+            bikeName,
+            brand,
+            size,
+            amount,
+            count
+        );
+        if (data) {
+            return res.status(201).json({ result: data });
+        } else {
+            return res.status(503).json({ result: data });
+        }
+    } catch (e) {
+        return res.status(503).json({ result: false });
+    }
+};
 module.exports = {
     controller: {
         productCheck,
         memberCheckList,
+        productInsert,
     },
 };
