@@ -33,7 +33,12 @@ class User extends Sequelize.Model {
             }
         );
     }
-    static associate(db) {}
+    static associate(db) {
+        db.User.belongsTo(db.BikeInfo, {
+            foreignKey: 'id',
+            sourceKey: 'bike_id',
+        });
+    }
 }
 
 module.exports = User;
