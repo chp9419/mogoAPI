@@ -29,11 +29,15 @@ const userBikeInfoInsert = async (_name, _phone, _age, _bikeName) => {
         const phone = _phone;
         const age = _age;
         const bikeName = _bikeName;
+
         const [result] = await db.BikeInfo.findAll({
-            attributes: ['id'],
+            attributes: ['id', 'count'],
             where: { bikeName: bikeName },
         });
-        const id = result.dataValues.id;
+        const id = result.dataValues.id; // 유니크 인덱스
+        const count = result.dataValues.count; // 재고 숫자.
+        const countNumber = count - 1;
+
         await db.User.create({
             name,
             phone,
@@ -41,6 +45,7 @@ const userBikeInfoInsert = async (_name, _phone, _age, _bikeName) => {
             bikeName,
             bike_id: id, // FK
         });
+        await db.BikeInfo.update({ count: countNumber }, { where: { id: id } });
         await T.commit();
         return true;
     } catch (e) {
