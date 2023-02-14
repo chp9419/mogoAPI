@@ -44,6 +44,25 @@ const productInsert = async (req, res) => {
         return res.status(503).json({ result: false });
     }
 };
+
+const countPlus = async (req, res) => {
+    // 수량만 추가 및 삭제 하고 싶을때
+    const { id, count } = req.query;
+
+    try {
+    } catch (e) {
+        return res.status(503).json({ result: false });
+    }
+};
+
+const countDelete = async (req, res) => {
+    const { id, count } = req.query;
+
+    try {
+    } catch (e) {
+        return res.status(503).json({ result: false });
+    }
+};
 module.exports = {
     controller: {
         productCheck,
