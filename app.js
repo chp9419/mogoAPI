@@ -34,6 +34,3 @@ sequelize
 app.listen(app.get('port'), () => {
     console.log(app.get('port'), '번 포트에서 대기 중');
 });
-//테스트 해보기
-//될때까지 테스트 해보기
-//다시 한번 해보는거야!
